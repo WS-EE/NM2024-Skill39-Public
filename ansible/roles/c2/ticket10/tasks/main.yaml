@@ -1,0 +1,55 @@
+- name: Set hostname
+  ansible.windows.win_hostname:
+    name: "ns-{{ inventory_hostname_short }}"
+  register: _hostname
+
+- name: Reboot
+  ansible.windows.win_reboot:
+  when: _hostname is defined and _hostname.changed
+
+- name: Install dns server
+  ansible.windows.win_feature:
+    name: DNS
+    include_sub_features: true
+    include_management_tools: false
+
+- name: Create zone
+  community.windows.win_dns_zone:
+    name: "{{ inventory_hostname_short }}.ee"
+    state: present
+    type: primary
+    replication: none
+
+
+- name: Create NS and A records for NS
+  community.windows.win_dns_record:
+    name: "{{ item.name }}"
+    type: "{{ item.type }}"
+    value: "{{ item.value }}"
+    zone: "{{ inventory_hostname_short }}.ee"
+    state: present
+  with_items:
+    - name: "ns-{{ inventory_hostname_short }}"
+      type: "A"
+      value: "{{ ansible_host }}"
+    - name: "{{ inventory_hostname_short }}.ee"
+      type: "NS"
+      value: "ns-{{ inventory_hostname_short }}.{{ inventory_hostname_short }}.ee"
+
+- name: Create some records
+  community.windows.win_dns_record:
+    name: "{{ item.name }}"
+    type: "A"
+    value: "{{ item.ip }}"
+    zone: "{{ inventory_hostname_short }}.ee"
+  with_items:
+    - name: bogus
+      ip: 99.88.77.66
+    - name: www
+      ip: 10.24.10.80
+    - name: spf
+      ip: 10.24.10.10
+    - name: ma1l
+      ip: 10.24.10.10
+  tags:
+    - records

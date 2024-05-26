@@ -1,0 +1,41 @@
+---
+
+- name: Make sure docker folder exists
+  ansible.builtin.file:
+    path: "{{ repo_docker.path }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  tags:
+    - repo
+    - docker
+
+- name: Copy docker files
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: "{{ repo_docker.path }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  with_fileglob:
+    - "docker/*"
+    - "docker-copy/*"
+  tags:
+    - repo
+    - docker
+
+- name: "Rename {{ item }}"
+  ansible.builtin.copy:
+    src: "{{ repo_docker.path }}/{{ item }}"
+    dest: "{{ repo_docker.path }}/.{{ item }}"
+    remote_src: true
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  with_items:
+    - perltidyrc
+    - dockerignore
+  tags:
+    - repo
+    - docker

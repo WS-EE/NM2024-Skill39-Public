@@ -1,0 +1,17 @@
+config router bgp
+	set router-id $(RID)
+	set as 65024
+    config neighbor-group
+    	edit "NM24"
+        	set link-down-failover enable
+            set remote-as 65024
+            set route-reflector-client enable
+        next
+	end
+    config neighbor-range
+    	edit 1
+        	set prefix 10.24.24.0 255.255.255.0
+            set neighbor-group "NM24"
+        next
+	end
+end

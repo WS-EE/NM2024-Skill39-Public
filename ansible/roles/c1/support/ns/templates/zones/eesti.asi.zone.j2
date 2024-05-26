@@ -1,0 +1,25 @@
+;
+; asi. TLD zone for nm24
+;
+$TTL    600
+@       IN      SOA     admin.eesti.asi. ns.eesti.asi. (
+                     2024050501         ; Serial
+                            600         ; Refresh
+                            600         ; Retry
+                            600         ; Expire
+                            600 )       ; Negative Cache TTL
+;
+
+eesti.asi.        NS      ns.eesti.asi.
+ns.eesti.asi.     A       {{ ansible_host }}
+
+{% for nr in range(1,competitor.amount) %}
+; Glue record for competitor {{ nr }}
+ns.peakontor.{{ nr }}.eesti.asi.     A       198.51.100.10{{ nr }}
+ns.harukontor.{{ nr }}.eesti.asi.    A       198.51.100.20{{ nr }}
+
+peakontor.{{ nr }}.eesti.asi.    NS      ns.peakontor.{{ nr }}.eesti.asi.
+harukontor.{{ nr }}.eesti.asi.   NS      ns.harukontor.{{ nr }}.eesti.asi.
+
+
+{% endfor %}

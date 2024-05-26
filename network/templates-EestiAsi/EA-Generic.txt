@@ -1,0 +1,9 @@
+config system global
+    set hostname "FW-$(SiteName)"
+    set timezone "Europe/Tallinn"
+end
+
+config system dns
+    set primary 203.0.113.1
+end
+

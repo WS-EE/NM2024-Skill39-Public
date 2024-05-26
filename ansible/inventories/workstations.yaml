@@ -1,0 +1,40 @@
+all:
+  children:
+    workstations:
+      hosts:
+        v1:
+          ansible_host: "10.1.1.100"
+          vsphere_user: "meister1"
+          vsphere_pw: "xt!&YwD2b6hYi&@7HPqz"
+        v2:
+          ansible_host: "10.2.2.100"
+          vsphere_user: "meister2"
+          vsphere_pw: "#JQSGB$x3iDbU6bmuBVY"
+        v3:
+          ansible_host: "10.3.3.100"
+          vsphere_user: "meister3"
+          vsphere_pw: "x^ap2u7a&RuTFBiLnqy8"
+        v4:
+          ansible_host: "10.4.4.100"
+          vsphere_user: "meister4"
+          vsphere_pw: "Qmr2h5%*yFn!C!AtaPaj"
+        v5:
+          ansible_host: "10.5.5.100"
+          vsphere_user: "meister5"
+          vsphere_pw: "u8s%p7tqDTH@Z8zd8BWx"
+        v6:
+          ansible_host: "10.6.6.100"
+          vsphere_user: "meister6"
+          vsphere_pw: "&4TEJc$Y5VUq!rBGjwvs"
+        v7:
+          ansible_host: "10.7.7.100"
+          vsphere_user: "meister7"
+          vsphere_pw: "GTiL^zZ6U3r%AEGEF9^$"
+        v8:
+          ansible_host: "10.8.8.100"
+          vsphere_user: "meister8"
+          vsphere_pw: "GADUGYvUCsggyB@@3$7X"
+        v9:
+          ansible_host: "10.9.9.100"
+          vsphere_user: "meister9"
+          vsphere_pw: "V24z55u*!8yNbv*8hQns"

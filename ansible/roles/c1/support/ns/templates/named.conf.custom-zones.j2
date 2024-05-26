@@ -1,0 +1,43 @@
+// root zone for NM24
+acl admin {
+    10.212.134.0/24;
+    203.0.113.0/30;
+};
+acl notadmin {
+    !10.212.134.0/24;
+    !203.0.113.0/30;
+    any;
+};
+view meister {
+    match-clients { admin; };
+    allow-recursion { any; };
+    forwarders {
+        8.8.8.8;
+    };
+
+    // defined zones
+{% for zone in ns_bind9.zones %}
+    zone "{{ zone }}" {
+            type master;
+            file "{{ ns_bind9.path.zones }}{{ zone }}.zone";
+    };
+
+{% endfor %}
+};
+
+view default {
+    match-clients { notadmin; };
+    zone "." {
+            type master;
+            file "{{ ns_bind9.path.zones }}root.zone";
+    };
+
+    // defined zones
+{% for zone in ns_bind9.zones %}
+    zone "{{ zone }}" {
+            type master;
+            file "{{ ns_bind9.path.zones }}{{ zone }}.zone";
+    };
+
+{% endfor %}
+};

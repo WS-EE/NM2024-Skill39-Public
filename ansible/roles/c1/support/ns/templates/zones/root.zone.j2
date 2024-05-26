@@ -1,0 +1,24 @@
+;
+; Root zone for NM24
+;
+$TTL    600
+@       IN      SOA     admin. root.nm24. (
+                     2024050502         ; Serial
+                            600         ; Refresh
+                            600         ; Retry
+                            600         ; Expire
+                            600 )       ; Negative Cache TTL
+;
+.               IN   NS      root.nm24.
+root.nm24.      IN   A       {{ ansible_host }}
+
+nm24.ee.        IN   NS      ns.nm24.ee.
+ns.nm24.ee.     IN   A       {{ ansible_host }}
+
+asi.            IN   NS      eesti-tld.asi.
+eesti-tld.asi.  IN   A       {{ ansible_host }}
+
+mtk.            IN   NS      nm24-tld.mtk.
+nm24-tld.mtk.   IN   A       {{ ansible_host }}
+
+113.0.203.in-addr.arpa.     IN     NS     ns.nm24.ee.

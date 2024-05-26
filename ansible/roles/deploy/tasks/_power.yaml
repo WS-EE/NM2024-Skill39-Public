@@ -1,0 +1,12 @@
+---
+- name: Start Virtual Machine
+  delegate_to: localhost
+  community.vmware.vmware_guest_powerstate:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    folder: "{{ vm_folder }}"
+    name: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.power }}'

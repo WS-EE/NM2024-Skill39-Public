@@ -1,0 +1,30 @@
+---
+- name: Create a snapshot - START
+  delegate_to: localhost
+  community.vmware.vmware_guest_snapshot:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    folder: "{{ vm_folder }}"
+    name: '{{ inventory_hostname }}'
+    memory_dump: true
+    state: absent
+    snapshot_name: START
+    description: START
+
+- name: Create a snapshot - ENDEX
+  delegate_to: localhost
+  community.vmware.vmware_guest_snapshot:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    folder: "{{ vm_folder }}"
+    name: '{{ inventory_hostname }}'
+    memory_dump: true
+    state: present
+    snapshot_name: ENDEX
+    description: ENDEX

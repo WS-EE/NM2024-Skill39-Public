@@ -1,0 +1,81 @@
+---
+
+- name: Install bind9
+  ansible.builtin.apt:
+    name: bind9
+    state: present
+  tags:
+    - bind
+    - dns
+
+- name: Include custom config
+  ansible.builtin.lineinfile:
+    path: "{{ ns_bind9.path.config }}named.conf"
+    regexp: 'conf.custom'
+    line: 'include "/etc/bind/named.conf.custom-zones";'
+  notify:
+    Restart bind9
+  become: true
+  tags:
+    - bind
+    - dns
+
+- name: Copy modified conf files
+  ansible.builtin.template:
+    src: "named.conf.{{ item }}-zones.j2"
+    dest: "{{ ns_bind9.path.config }}named.conf.{{ item }}-zones"
+    owner: "{{ ns_bind9.user }}"
+    group: "{{ ns_bind9.group }}"
+    mode: "0644"
+  become: true
+  notify:
+    Restart bind9
+  with_items:
+    - default
+    - custom
+  tags:
+    - bind
+    - dns
+
+- name: Create zone folder
+  ansible.builtin.file:
+    path: "{{ ns_bind9.path.zones }}"
+    state: directory
+    owner: "{{ ns_bind9.user }}"
+    group: "{{ ns_bind9.group }}"
+    mode: "0755"
+  become: true
+  tags:
+    - bind
+    - dns
+
+- name: Copy root zone
+  ansible.builtin.template:
+    src: zones/root.zone.j2
+    dest: "{{ ns_bind9.path.zones }}root.zone"
+    owner: "{{ ns_bind9.user }}"
+    group: "{{ ns_bind9.group }}"
+    mode: "0644"
+  notify:
+    Restart bind9
+  become: true
+  tags:
+    - bind
+    - dns
+
+- name: Copy zone files
+  ansible.builtin.template:
+    src: "zones/{{ zone_file }}.zone.j2"
+    dest: "{{ ns_bind9.path.zones }}{{ zone_file }}.zone"
+    owner: "{{ ns_bind9.user }}"
+    group: "{{ ns_bind9.group }}"
+    mode: "0644"
+  loop: "{{ ns_bind9.zones }}"
+  loop_control:
+    loop_var: zone_file
+  notify:
+    Restart bind9
+  become: true
+  tags:
+    - bind
+    - dns

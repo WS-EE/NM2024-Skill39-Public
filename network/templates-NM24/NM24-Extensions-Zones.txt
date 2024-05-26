@@ -1,0 +1,5 @@
+config system zone
+    edit EESTIASI
+    	set interface port2 port3 port4 port5 port6 port7 port8 port9 port10
+    next
+end

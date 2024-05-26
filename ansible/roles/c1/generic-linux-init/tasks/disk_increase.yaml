@@ -1,0 +1,51 @@
+---
+
+- name: Install parted
+  ansible.builtin.apt:
+    name: parted
+    state: present
+  become: true
+  tags:
+    - init
+
+- name: Increase extended partition sizes to fit disk
+  community.general.parted:
+    device: /dev/sda
+    number: 2
+    part_end: "100%"
+    resize: true
+    state: present
+  become: true
+  tags:
+    - init
+
+- name: Increase lvm partition sizes to fit disk
+  community.general.parted:
+    device: /dev/sda
+    number: 5
+    part_end: "100%"
+    resize: true
+    state: present
+  become: true
+  tags:
+    - init
+
+- name: Extend physical volume
+  community.general.lvg:
+    state: present
+    vg: debian
+    pvs:
+      - /dev/sda5
+    pvresize: true
+  become: true
+  tags:
+    - init
+- name: Resizes lvm and resizes2fs
+  community.general.lvol:
+    vg: debian
+    lv: root
+    size: +100%FREE
+    resizefs: true
+  become: true
+  tags:
+    - init

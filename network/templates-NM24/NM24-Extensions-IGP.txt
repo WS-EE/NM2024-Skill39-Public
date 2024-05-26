@@ -1,0 +1,14 @@
+config router bgp
+	set router-id $(RID)
+	set as 65024
+    config neighbor
+    	edit "10.24.24.1"
+        	set advertisement-interval 1
+            set link-down-failover enable
+            set remote-as 65024
+        next
+	end
+    config redistribute connected
+    	set status enable
+    end
+end

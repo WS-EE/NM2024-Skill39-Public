@@ -1,0 +1,64 @@
+---
+- name: Folder - Create - Root
+  delegate_to: localhost
+  community.vmware.vcenter_folder:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter_name: '{{ vmware.datacenter }}'
+    folder_type: vm
+    parent_folder: '{{ folder_parent }}'
+    folder_name: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.folders }}'
+  when: 
+   - "'folders_root' in group_names"
+   - vmware.state.folders == "present"
+
+- name: Folder - Create - Sub
+  delegate_to: localhost
+  community.vmware.vcenter_folder:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter_name: '{{ vmware.datacenter }}'
+    folder_type: vm
+    parent_folder: '{{ folder_parent }}'
+    folder_name: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.folders }}'
+  when:
+   - "'folders_sub' in group_names"
+   - vmware.state.folders == "present"
+
+- name: Folder - Cleanup - Sub
+  delegate_to: localhost
+  community.vmware.vcenter_folder:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter_name: '{{ vmware.datacenter }}'
+    parent_folder: '{{ folder_parent }}'
+    folder_name: '{{ inventory_hostname }}'
+    folder_type: vm
+    state: '{{ vmware.state.folders }}'
+  when:
+   - "'folders_sub' in group_names"
+   - vmware.state.folders == "absent"
+  
+- name: Folder - Cleanup - Root
+  delegate_to: localhost
+  community.vmware.vcenter_folder:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter_name: '{{ vmware.datacenter }}'
+    parent_folder: '{{ folder_parent }}'
+    folder_name: '{{ inventory_hostname }}'
+    folder_type: vm
+    state: '{{ vmware.state.folders }}'
+  when:
+   - "'folders_root' in group_names"
+   - vmware.state.folders == "absent"

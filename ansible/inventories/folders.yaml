@@ -1,0 +1,413 @@
+all:
+  children:
+    folders:
+      children:
+        folders_root:
+          hosts:
+            C1-MEISTER1:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER1
+              rights: meister1
+            C2-MEISTER1:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER1
+              rights: meister1
+            C1-MEISTER2:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER2
+              rights: meister2
+            C2-MEISTER2:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER2
+              rights: meister2
+            C1-MEISTER3:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER3
+              rights: meister3
+            C2-MEISTER3:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER3
+              rights: meister3
+            C1-MEISTER4:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER4
+              rights: meister4
+            C2-MEISTER4:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER4
+              rights: meister4
+            C1-MEISTER5:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER5
+              rights: meister5
+            C2-MEISTER5:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER5
+              rights: meister5
+            C1-MEISTER6:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER6
+              rights: meister6
+            C2-MEISTER6:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER6
+              rights: meister6
+            C1-MEISTER7:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER7
+              rights: meister7
+            C2-MEISTER7:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER7
+              rights: meister7
+            C1-MEISTER8:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER8
+              rights: meister8
+            C2-MEISTER8:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER8
+              rights: meister8
+            C1-MEISTER9:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER9
+              rights: meister9
+            C2-MEISTER9:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER9
+              rights: meister9
+        folders_sub:
+          hosts:
+            C1-MEISTER1-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER1 
+              full_path: /NM24/C1-MEISTER1/C1-MEISTER1-PEAKONTOR
+            C1-MEISTER1-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER1 
+              full_path: /NM24/C1-MEISTER1/C1-MEISTER1-HARUKONTOR
+            C2-MEISTER1-TICKET01:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET01
+            C2-MEISTER1-TICKET02:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET02
+            C2-MEISTER1-TICKET03:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET03
+            C2-MEISTER1-TICKET04:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET04
+            C2-MEISTER1-TICKET05:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET05
+            C2-MEISTER1-TICKET06:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET06
+            C2-MEISTER1-TICKET07:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET07
+            C2-MEISTER1-TICKET08:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET08
+            C2-MEISTER1-TICKET09:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET09
+            C2-MEISTER1-TICKET10:
+              folder_parent: /NM24/C2-MEISTER1 
+              full_path: /NM24/C2-MEISTER1/C2-MEISTER1-TICKET10
+
+            C1-MEISTER2-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER2 
+              full_path: /NM24/C1-MEISTER2/C1-MEISTER2-PEAKONTOR
+            C1-MEISTER2-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER2 
+              full_path: /NM24/C1-MEISTER2/C1-MEISTER2-HARUKONTOR
+            C2-MEISTER2-TICKET01:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET01
+            C2-MEISTER2-TICKET02:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET02
+            C2-MEISTER2-TICKET03:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET03
+            C2-MEISTER2-TICKET04:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET04
+            C2-MEISTER2-TICKET05:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET05
+            C2-MEISTER2-TICKET06:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET06
+            C2-MEISTER2-TICKET07:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET07
+            C2-MEISTER2-TICKET08:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET08
+            C2-MEISTER2-TICKET09:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET09
+            C2-MEISTER2-TICKET10:
+              folder_parent: /NM24/C2-MEISTER2 
+              full_path: /NM24/C2-MEISTER2/C2-MEISTER2-TICKET10
+
+            C1-MEISTER3-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER3 
+              full_path: /NM24/C1-MEISTER3/C1-MEISTER3-PEAKONTOR
+            C1-MEISTER3-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER3 
+              full_path: /NM24/C1-MEISTER3/C1-MEISTER3-HARUKONTOR
+            C2-MEISTER3-TICKET01:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET01
+            C2-MEISTER3-TICKET02:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET02
+            C2-MEISTER3-TICKET03:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET03
+            C2-MEISTER3-TICKET04:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET04
+            C2-MEISTER3-TICKET05:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET05
+            C2-MEISTER3-TICKET06:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET06
+            C2-MEISTER3-TICKET07:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET07
+            C2-MEISTER3-TICKET08:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET08
+            C2-MEISTER3-TICKET09:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET09
+            C2-MEISTER3-TICKET10:
+              folder_parent: /NM24/C2-MEISTER3 
+              full_path: /NM24/C2-MEISTER3/C2-MEISTER3-TICKET10
+
+            C1-MEISTER4-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER4 
+              full_path: /NM24/C1-MEISTER4/C1-MEISTER4-PEAKONTOR
+            C1-MEISTER4-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER4 
+              full_path: /NM24/C1-MEISTER4/C1-MEISTER4-HARUKONTOR
+            C2-MEISTER4-TICKET01:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET01
+            C2-MEISTER4-TICKET02:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET02
+            C2-MEISTER4-TICKET03:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET03
+            C2-MEISTER4-TICKET04:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET04
+            C2-MEISTER4-TICKET05:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET05
+            C2-MEISTER4-TICKET06:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET06
+            C2-MEISTER4-TICKET07:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET07
+            C2-MEISTER4-TICKET08:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET08
+            C2-MEISTER4-TICKET09:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET09
+            C2-MEISTER4-TICKET10:
+              folder_parent: /NM24/C2-MEISTER4 
+              full_path: /NM24/C2-MEISTER4/C2-MEISTER4-TICKET10
+
+            C1-MEISTER5-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER5 
+              full_path: /NM24/C1-MEISTER5/C1-MEISTER5-PEAKONTOR
+            C1-MEISTER5-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER5 
+              full_path: /NM24/C1-MEISTER5/C1-MEISTER5-HARUKONTOR
+            C2-MEISTER5-TICKET01:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET01
+            C2-MEISTER5-TICKET02:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET02
+            C2-MEISTER5-TICKET03:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET03
+            C2-MEISTER5-TICKET04:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET04
+            C2-MEISTER5-TICKET05:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET05
+            C2-MEISTER5-TICKET06:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET06
+            C2-MEISTER5-TICKET07:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET07
+            C2-MEISTER5-TICKET08:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET08
+            C2-MEISTER5-TICKET09:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET09
+            C2-MEISTER5-TICKET10:
+              folder_parent: /NM24/C2-MEISTER5 
+              full_path: /NM24/C2-MEISTER5/C2-MEISTER5-TICKET10
+
+            C1-MEISTER6-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER6 
+              full_path: /NM24/C1-MEISTER6/C1-MEISTER6-PEAKONTOR
+            C1-MEISTER6-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER6 
+              full_path: /NM24/C1-MEISTER6/C1-MEISTER6-HARUKONTOR
+            C2-MEISTER6-TICKET01:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET01
+            C2-MEISTER6-TICKET02:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET02
+            C2-MEISTER6-TICKET03:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET03
+            C2-MEISTER6-TICKET04:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET04
+            C2-MEISTER6-TICKET05:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET05
+            C2-MEISTER6-TICKET06:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET06
+            C2-MEISTER6-TICKET07:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET07
+            C2-MEISTER6-TICKET08:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET08
+            C2-MEISTER6-TICKET09:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET09
+            C2-MEISTER6-TICKET10:
+              folder_parent: /NM24/C2-MEISTER6 
+              full_path: /NM24/C2-MEISTER6/C2-MEISTER6-TICKET10
+
+            C1-MEISTER7-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER7 
+              full_path: /NM24/C1-MEISTER7/C1-MEISTER7-PEAKONTOR
+            C1-MEISTER7-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER7 
+              full_path: /NM24/C1-MEISTER7/C1-MEISTER7-HARUKONTOR
+            C2-MEISTER7-TICKET01:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET01
+            C2-MEISTER7-TICKET02:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET02
+            C2-MEISTER7-TICKET03:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET03
+            C2-MEISTER7-TICKET04:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET04
+            C2-MEISTER7-TICKET05:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET05
+            C2-MEISTER7-TICKET06:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET06
+            C2-MEISTER7-TICKET07:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET07
+            C2-MEISTER7-TICKET08:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET08
+            C2-MEISTER7-TICKET09:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET09
+            C2-MEISTER7-TICKET10:
+              folder_parent: /NM24/C2-MEISTER7 
+              full_path: /NM24/C2-MEISTER7/C2-MEISTER7-TICKET10
+
+            C1-MEISTER8-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER8 
+              full_path: /NM24/C1-MEISTER8/C1-MEISTER8-PEAKONTOR
+            C1-MEISTER8-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER8 
+              full_path: /NM24/C1-MEISTER8/C1-MEISTER8-HARUKONTOR
+            C2-MEISTER8-TICKET01:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET01
+            C2-MEISTER8-TICKET02:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET02
+            C2-MEISTER8-TICKET03:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET03
+            C2-MEISTER8-TICKET04:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET04
+            C2-MEISTER8-TICKET05:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET05
+            C2-MEISTER8-TICKET06:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET06
+            C2-MEISTER8-TICKET07:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET07
+            C2-MEISTER8-TICKET08:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET08
+            C2-MEISTER8-TICKET09:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET09
+            C2-MEISTER8-TICKET10:
+              folder_parent: /NM24/C2-MEISTER8 
+              full_path: /NM24/C2-MEISTER8/C2-MEISTER8-TICKET10
+
+            C1-MEISTER9-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER9 
+              full_path: /NM24/C1-MEISTER9/C1-MEISTER9-PEAKONTOR
+            C1-MEISTER9-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER9 
+              full_path: /NM24/C1-MEISTER9/C1-MEISTER9-HARUKONTOR
+            C2-MEISTER9-TICKET01:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET01
+            C2-MEISTER9-TICKET02:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET02
+            C2-MEISTER9-TICKET03:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET03
+            C2-MEISTER9-TICKET04:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET04
+            C2-MEISTER9-TICKET05:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET05
+            C2-MEISTER9-TICKET06:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET06
+            C2-MEISTER9-TICKET07:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET07
+            C2-MEISTER9-TICKET08:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET08
+            C2-MEISTER9-TICKET09:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET09
+            C2-MEISTER9-TICKET10:
+              folder_parent: /NM24/C2-MEISTER9 
+              full_path: /NM24/C2-MEISTER9/C2-MEISTER9-TICKET10
+

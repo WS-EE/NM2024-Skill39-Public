@@ -1,0 +1,10 @@
+Lisage faili /etc/docker/daemon.json see rida:
+`{ "insecure-registries":["203.0.113.2:5000"] }`
+
+Peal seda restartige docker:
+`sudo systemctl restart docker`
+
+Saate docker image allalaadida sedasi:
+`sudo docker pull 203.0.113.2:5000/bind9`
+
+PS! Vaadage kindlasti praegust docker image nime ;)

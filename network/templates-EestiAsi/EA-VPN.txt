@@ -1,0 +1,28 @@
+config system gre-tunnel
+    edit "VPN"
+        set interface "port1"
+        set remote-gw 198.51.100.$(RemoteID)0$(EA_VID)
+        set local-gw 198.51.100.$(SiteID)0$(EA_VID)
+    next
+end
+
+config system interface
+    edit "VPN"
+        set allowaccess ping
+        set ip 172.16.101.$(SiteID) 255.255.255.255
+        set remote-ip 172.16.101.$(RemoteID) 255.255.255.255
+    next
+end
+
+config router static
+	edit 101
+    	set device "VPN"
+        set gateway 172.16.101.$(RemoteID)
+        set dst 10.$(RemoteID)0.10$(EA_VID).1/24
+    next
+	edit 102
+    	set device "VPN"
+        set gateway 172.16.101.$(RemoteID)
+        set dst 192.168.$(RemoteID)0$(EA_VID).1/24
+    next
+end

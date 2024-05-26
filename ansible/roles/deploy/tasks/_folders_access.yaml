@@ -1,0 +1,32 @@
+---
+- name: Folders - Permissions - C1
+  delegate_to: localhost
+  community.vmware.vmware_object_role_permission:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    object_type: Folder
+    object_name: '{{ inventory_hostname }}'
+    role: Rights
+    principal: 'ESX.KEHTNA.MTK\{{ rights }}'
+    state: '{{ access.c1 }}'
+  when:
+    - "'folders_root' in group_names"
+    - "'C1' in inventory_hostname"
+
+- name: Folders - Permissions - C2
+  delegate_to: localhost
+  community.vmware.vmware_object_role_permission:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    object_type: Folder
+    object_name: '{{ inventory_hostname }}'
+    role: Rights
+    principal: 'ESX.KEHTNA.MTK\{{ rights }}'
+    state: '{{ access.c2 }}'
+  when:
+    - "'folders_root' in group_names"
+    - "'C2' in inventory_hostname"

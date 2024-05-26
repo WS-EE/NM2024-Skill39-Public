@@ -1,0 +1,43 @@
+---
+- name: Access information
+  ansible.windows.win_template:
+    src: info.txt.j2
+    dest: C:\Users\Meister\Desktop\info.txt
+
+- name: Test Project
+  ansible.windows.win_copy:
+    src: C1/NM2024_TP_C1.pdf
+    dest: C:\Users\Meister\Desktop\NM2024_TP_C1.pdf
+
+- name: Create TICKET DIR
+  ansible.windows.win_file:
+    path: C:\Users\Meister\Desktop\TICKETID
+    state: directory
+
+- name: Create TICKET DIR
+  ansible.windows.win_file:
+    path: C:\Users\Meister\Desktop\TICKETID\LAHENDATUD
+    state: directory
+
+- name: C2 information
+  ansible.windows.win_copy:
+    src: C2/{{ item }}
+    dest: C:\Users\Meister\Desktop\TICKETID\{{ item }}
+  with_items:
+    - c2_ticket1.docx
+    - c2_ticket2.docx
+    - c2_ticket3.docx
+    - c2_ticket4.docx
+    - c2_ticket5.docx
+    - c2_ticket6.docx
+    - c2_ticket7.docx
+    - c2_ticket8.docx
+    - c2_ticket9.docx
+    - c2_ticket10.docx
+    - NM2024-DAY2.png
+
+- name: Gather
+  ansible.windows.win_copy:
+    remote_src: true
+    src: C:\Users\Meister\Desktop\TICKETID\LAHENDATUD\
+    dest: ./Gather/

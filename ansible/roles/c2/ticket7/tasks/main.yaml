@@ -1,0 +1,52 @@
+- name: Set hostname
+  ansible.windows.win_hostname:
+    name: "{{ inventory_hostname_short }}"
+  register: _hostname
+
+- name: Reboot
+  ansible.windows.win_reboot:
+  when:
+    - _hostname.changed # noqa: no-handler
+
+- name: Install DNS
+  ansible.windows.win_feature:
+    name: DNS
+    state: present
+    include_sub_features: true
+    include_management_tools: true
+  register: _install_dns
+
+- name: Install IIS
+  ansible.windows.win_feature:
+    name: Web-Server
+    state: present
+    include_management_tools: true
+  register: _install_iis
+
+- name: Generate selfsigned certificate
+  ansible.windows.win_powershell:
+    script: |
+      $date_now = Get-Date
+      $extended_date = $date_now.AddYears(3)
+      $cert = New-SelfSignedCertificate -certstorelocation cert:\localmachine\my -dnsname www.{{ inventory_hostname_short }}.ee -notafter $extended_date
+
+- name: Reboot
+  ansible.windows.win_reboot:
+  when:
+    - _install_iis.restart_needed is defined and _install_iis.restart_needed
+    - _install_dns.restart_needed is defined and _install_dns.restart_needed
+
+
+- name: Add our dns zone
+  community.windows.win_dns_zone:
+    name: "{{ inventory_hostname_short }}.ee"
+    type: primary
+    state: present
+
+- name: Add www record to zone
+  community.windows.win_dns_record:
+    name: "www"
+    type: "A"
+    state: present
+    zone: "{{ inventory_hostname_short }}.ee"
+    value: "{{ ansible_host }}"

@@ -1,0 +1,8 @@
+; NM24 root hints file for competitors
+;
+.                        600      NS    root.nm24.
+root.nm24.               600      A     203.0.113.1
+.                        600      NS    sss.
+sss.                     600      A     55.55.55.55
+;
+; End of file

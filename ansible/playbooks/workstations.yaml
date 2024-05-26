@@ -1,0 +1,6 @@
+---
+- name: Configure workstations
+  hosts: workstations
+  gather_facts: false
+  roles:
+    - workstations

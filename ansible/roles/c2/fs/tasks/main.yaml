@@ -1,0 +1,20 @@
+- name: Install file server
+  ansible.windows.win_feature:
+    name: FileAndStorage-Services
+    state: present
+    include_sub_features: true
+    include_management_tools: true
+
+- name: Make sure fileshare folder exsist
+  ansible.windows.win_file:
+    state: directory
+    path: "{{ fs_fileshare_path }}"
+
+- name: Create a share
+  ansible.windows.win_share:
+    name: "{{ fs_fileshare_name }}"
+    path: "{{ fs_fileshare_path }}"
+    full: "{{ fs_fileshare_permissions_full }}"
+    description: Important fileshare for customer
+    state: present
+    list: true

@@ -1,0 +1,57 @@
+all:
+  children:
+    folders:
+      children:
+        folders_root:
+          hosts:
+{% for nr in range(1,competitor.amount) %}
+            C1-MEISTER{{ nr }}:
+              folder_parent: NM24
+              full_path: /NM24/C1-MEISTER{{ nr }}
+              rights: meister{{ nr }}
+            C2-MEISTER{{ nr }}:
+              folder_parent: NM24
+              full_path: /NM24/C2-MEISTER{{ nr }}
+              rights: meister{{ nr }}
+{% endfor %}
+        folders_sub:
+          hosts:
+{% for nr in range(1,competitor.amount) %}
+            C1-MEISTER{{ nr }}-PEAKONTOR:
+              folder_parent: /NM24/C1-MEISTER{{ nr }} 
+              full_path: /NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-PEAKONTOR
+            C1-MEISTER{{ nr }}-HARUKONTOR:
+              folder_parent: /NM24/C1-MEISTER{{ nr }} 
+              full_path: /NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-HARUKONTOR
+            C2-MEISTER{{ nr }}-TICKET01:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET01
+            C2-MEISTER{{ nr }}-TICKET02:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET02
+            C2-MEISTER{{ nr }}-TICKET03:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET03
+            C2-MEISTER{{ nr }}-TICKET04:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET04
+            C2-MEISTER{{ nr }}-TICKET05:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET05
+            C2-MEISTER{{ nr }}-TICKET06:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET06
+            C2-MEISTER{{ nr }}-TICKET07:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET07
+            C2-MEISTER{{ nr }}-TICKET08:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET08
+            C2-MEISTER{{ nr }}-TICKET09:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET09
+            C2-MEISTER{{ nr }}-TICKET10:
+              folder_parent: /NM24/C2-MEISTER{{ nr }} 
+              full_path: /NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET10
+
+{% endfor %}

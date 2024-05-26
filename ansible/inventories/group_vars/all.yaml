@@ -1,0 +1,48 @@
+access:
+  c1: absent # present
+  c2: absent # present
+
+vmware:
+  host: esx.kehtna.mtk
+  datacenter: 'Kehtna KHK'
+  cluster: 'Kehtna KHK'
+  datastore: 'vsanDatastore'
+  switch: 'KHK'
+  user: 'local-nm@esx.kehtna.mtk'
+  password: M3ister2024!
+  state:
+    networks: present
+    folders: present
+    pools: present
+    vms: present
+    power: powered-on # powered-off
+
+forti:
+  fmg_id: FMGVCLTM24000683
+  password: M3ister2024!
+
+# No ssh hostkey checking
+#ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+# Ansible user vars
+ansible_user: kohtunik
+ansible_password: "Hindan4usalt!"
+ansible_become_pass:  "{{ ansible_password }}" 
+ansible_sudo_pass: "{{ ansible_password }}"
+
+# Master pubkey
+all_ssh:
+  master_pubkey: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtsxcoAmilrhLSlWd0Ub4A8URSh+WPph1jeeixjIdwZ"
+
+# Generic variables
+
+competitor:
+  user:
+    name: meister
+    password: "Passw0rd!"
+  amount: 10
+
+referee:
+  user:
+    name: kohtunik
+    password: "Hindan4usalt!"

@@ -1,0 +1,28 @@
+---
+- name: Switches - {{ vmware.state.networks }}
+  delegate_to: localhost
+  community.vmware.vmware_dvs_portgroup:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    switch_name: '{{ vmware.switch }}'
+    portgroup_name: '{{ inventory_hostname }}'
+    port_binding: static
+    vlan_id: '{{ vlan_id }}'
+    state: '{{ vmware.state.networks }}'
+  ignore_errors: true
+
+- name: Switches - Permissions
+  delegate_to: localhost
+  community.vmware.vmware_object_role_permission:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    object_type: DistributedVirtualPortgroup
+    object_name: '{{ inventory_hostname }}'
+    role: Administrator
+    group: 'ESX.KEHTNA.MTK\NOORMEISTER'
+    state: present
+  when: vmware.state.networks == "present"

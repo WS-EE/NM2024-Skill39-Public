@@ -1,0 +1,35 @@
+all:
+  children:
+    networks:
+      hosts:
+{% for nr in range(1,competitor.amount) %}
+        NM24-V{{ nr }}-C1-PK-SVC:
+          vlan_id: 211{{ nr }}
+        NM24-V{{ nr }}-C1-PK-USR:
+          vlan_id: 212{{ nr }}
+        NM24-V{{ nr }}-C1-HK-SVC:
+          vlan_id: 213{{ nr }}
+        NM24-V{{ nr }}-C1-HK-USR:
+          vlan_id: 214{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET1:
+          vlan_id: 220{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET2:
+          vlan_id: 221{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET3:
+          vlan_id: 222{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET4:
+          vlan_id: 223{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET5:
+          vlan_id: 224{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET6:
+          vlan_id: 225{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET7:
+          vlan_id: 226{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET8:
+          vlan_id: 227{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET9:
+          vlan_id: 228{{ nr }}
+        NM24-V{{ nr }}-C2-TICKET10:
+          vlan_id: 229{{ nr }}
+
+{% endfor %}

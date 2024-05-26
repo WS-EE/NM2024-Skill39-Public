@@ -1,0 +1,4 @@
+repo_docker:
+  path: "apt-mirror"
+
+repo_docker_root_path: "/home/{{ ansible_user }}/{{ repo_docker.path }}"

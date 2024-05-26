@@ -1,0 +1,54 @@
+- name: Ticket 6
+  hosts: 
+    - srv-tix6
+    - tix6
+  tasks: 
+    - name: Create a Domain controller
+      when: "inventory_hostname_short == 'srv-tix6'"
+      ansible.builtin.include_role:
+        name: c2/dc
+      tags: dc
+
+    - name: Create a file server
+      when: "inventory_hostname_short == 'srv-tix6'"
+      ansible.builtin.include_role:
+        name: c2/fs
+      tags: fs
+
+    - name: Join to ws domain
+      when: "inventory_hostname_short == 'tix6'"
+      tags: ws
+      microsoft.ad.membership:
+        dns_domain_name: "{{ dc_domain_name }}"
+        hostname: "ws-{{ inventory_hostname_short }}"
+        state: domain
+        reboot: true
+        domain_admin_user: "{{ ansible_user }}@{{ dc_domain_name }}"
+        domain_admin_password: "{{ ansible_password }}"
+      
+    
+  vars:
+    dc_domain_name: tix6.ee
+    fs_fileshare_name: tix6
+
+- name: Ticket 7
+  hosts: tix7
+  roles:
+    - c2/ticket7
+
+- name: Ticket 8
+  hosts: tix8
+  gather_facts: false
+  roles:
+    - c2/ticket8
+
+- name: Ticket 9
+  hosts: tix9
+  roles:
+    - c2/dc
+    - c2/ticket9
+
+- name: Ticket 10
+  hosts: tix10
+  roles:
+    - c2/ticket10

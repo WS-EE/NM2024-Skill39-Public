@@ -1,0 +1,260 @@
+all:
+  children:
+    templates:
+      children:
+        templates_windows:
+          hosts:
+            NM24-Win22-GUI:
+              vm_folder: '/NM24/-Templates/'
+    vms:
+      children:
+        c1_vms:
+          children:
+            vms_forti:
+              hosts:
+{% for nr in range(1,competitor.amount) %}
+                FW.PEAKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-PEAKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-PEAKONTOR'
+                  vm_template: 'NM24-FG'
+                  vm_networks:
+                    - name: NM24-ISP-EA
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                    - name: NM24-V{{ nr }}-C1-PK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 2
+                    - name: NM24-V{{ nr }}-C1-PK-USR
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 3
+
+                FW.HARUKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-HARUKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-HARUKONTOR'
+                  vm_template: 'NM24-FG'
+                  vm_networks:
+                    - name: NM24-ISP-EA
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                    - name: NM24-V{{ nr }}-C1-HK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 2
+                    - name: NM24-V{{ nr }}-C1-HK-USR
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 3
+
+{% endfor %}
+
+            vms_windows:
+              hosts:
+{% for nr in range(1,competitor.amount) %}
+                SRV1.PEAKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-PEAKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-PEAKONTOR'
+                  vm_template: 'NM24-C1-PK-SRV1'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-PK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                SRV2.PEAKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-PEAKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-PEAKONTOR'
+                  vm_template: 'NM24-C1-PK-SRV2'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-PK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                KASUTAJA.PEAKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-PEAKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-PEAKONTOR'
+                  vm_template: 'NM24-C1-PK-KASUTAJA'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-PK-USR
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+{% endfor %}
+
+            vms_linux:
+              hosts:
+{% for nr in range(1,competitor.amount) %}
+                SRV1.HARUKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-HARUKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-HARUKONTOR'
+                  vm_template: 'NM24-C1-HK-SRV1'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-HK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                SRV2.HARUKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-HARUKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-HARUKONTOR'
+                  vm_template: 'NM24-C1-HK-SRV2'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-HK-SVC
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                ARENDAJA.HARUKONTOR.{{ nr }}.EESTI.ASI:
+                  vm_folder: '/NM24/C1-MEISTER{{ nr }}/C1-MEISTER{{ nr }}-HARUKONTOR/'
+                  vm_pool: 'C1-MEISTER{{ nr }}-HARUKONTOR'
+                  vm_template: 'NM24-C1-HK-ARENDAJA'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C1-HK-USR
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+
+{% endfor %}
+
+        c2_vms:
+          children:
+            tickets:
+              hosts:
+{% for nr in range(1,competitor.amount) %}
+                MEISTER{{ nr }}-TICKET1:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET01/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET01'
+                  vm_template: 'NM24-C2-TICKET1'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET1
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET1-WS:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET01/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET01'
+                  vm_template: 'NM24-C2-TICKET1-WS'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET1
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET2:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET02/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET02'
+                  vm_template: 'NM24-C2-TICKET2'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET2
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET2-FS:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET02/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET02'
+                  vm_template: 'NM24-C2-TICKET2-FS'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET2
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET3:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET03/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET03'
+                  vm_template: 'NM24-C2-TICKET3'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET3
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET4:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET04/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET04'
+                  vm_template: 'NM24-C2-TICKET4'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET4
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET4-RTR:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET04/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET04'
+                  vm_template: 'NM24-C2-TICKET4-RTR'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET4
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET5:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET05/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET05'
+                  vm_template: 'NM24-C2-TICKET5'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET5
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET6:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET06/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET06'
+                  vm_template: 'NM24-C2-TICKET6'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET6
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET6-SRV:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET06/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET06'
+                  vm_template: 'NM24-C2-TICKET6-SRV'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET6
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET7:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET07/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET07'
+                  vm_template: 'NM24-C2-TICKET7'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET7
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET8:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET08/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET08'
+                  vm_template: 'NM24-C2-TICKET8'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET8
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET9:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET09/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET09'
+                  vm_template: 'NM24-C2-TICKET9'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET9
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET9-WS:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET09/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET09'
+                  vm_template: 'NM24-C2-TICKET9-WS'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET9
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+                MEISTER{{ nr }}-TICKET10:
+                  vm_folder: '/NM24/C2-MEISTER{{ nr }}/C2-MEISTER{{ nr }}-TICKET10/'
+                  vm_pool: 'C2-MEISTER{{ nr }}-TICKET10'
+                  vm_template: 'NM24-C2-TICKET10'
+                  vm_networks:
+                    - name: NM24-V{{ nr }}-C2-TICKET10
+                      connected: true
+                      start_connected: true
+                      label: Network adapter 1
+
+{% endfor %}

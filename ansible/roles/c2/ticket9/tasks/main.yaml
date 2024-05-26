@@ -1,0 +1,17 @@
+- name: Add ad user arendaja
+  microsoft.ad.user:
+    name: arendaja
+    state: present
+    groups:
+      set:
+        - 'Domain Users'
+    password: "{{ competitor.user.password }}"
+    update_password: on_create
+
+- name: Set logon hours for arendaja
+  ansible.windows.win_powershell:
+    script: |
+      [byte[]]$hours = @(192,127,0,192,127,0,192,127,0,192,127,0,192,127,0,192,127,0,192,127,0)
+
+      Get-AdUser -Identity arendaja |
+      Set-ADUser -Replace @{logonHours = $hours}

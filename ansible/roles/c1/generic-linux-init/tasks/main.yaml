@@ -1,0 +1,89 @@
+---
+
+- name: Set hostname
+  ansible.builtin.hostname:
+    name: "{{ inventory_hostname_short }}"
+  become: true
+  tags:
+    - init
+    - hostname
+
+- name: Make sure hosts file has self resolv
+  ansible.builtin.lineinfile:
+    path: /etc/hosts
+    regexp: '127.0.1.1'
+    line: '127.0.1.1       {{ inventory_hostname_short }} {{ inventory_hostname }}'
+  become: true
+  tags:
+    - init
+    - hostsname
+
+- name: Increase the disk sizes
+  ansible.builtin.include_tasks:
+    "disk_increase.yaml"
+  tags:
+    - init
+    - disk
+
+- name: Overwrite sources.list
+  ansible.builtin.copy:
+    content: |
+      deb http://203.0.113.2/repo/deb.debian.org/debian bookworm main non-free-firmware
+      deb-src http://203.0.113.2/repo/deb.debian.org/debian bookworm main non-free-firmware
+      deb http://203.0.113.2/repo/security.debian.org/debian-security bookworm-security main non-free-firmware
+      deb-src http://203.0.113.2/repo/security.debian.org/debian-security bookworm-security main non-free-firmware
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  tags:
+    - init
+    - disk
+
+- name: Add users
+  become: true
+  tags:
+    - init
+    - users
+  block:
+    - name: Add competitor user
+      ansible.builtin.user:
+        name: "{{ competitor.user.name }}"
+        append: true
+        groups:
+          - sudo
+          - "{{ competitor.user.name }}"
+        state: present
+        password: "{{ competitor.user.password | password_hash('sha512') }}"
+      when: "'support_c1' not in group_names"
+      tags:
+        - init
+        - users
+
+    - name: Make sure we don't have meister
+      ansible.builtin.user:
+        name: meister
+        state: absent
+      when: "'support_c1' in group_names"
+      tags:
+        - init
+        - users
+
+    - name: Add referee user
+      ansible.builtin.user:
+        name: "{{ referee.user.name }}"
+        append: true
+        groups:
+          - sudo
+        state: present
+        password: "{{ referee.user.password | password_hash('sha512') }}"
+      tags:
+        - init
+        - users
+
+    - name: Add key to referee user
+      ansible.posix.authorized_key:
+        user: "{{ referee.user.name }}"
+        state: present
+        key: "{{ all_ssh.master_pubkey }}"

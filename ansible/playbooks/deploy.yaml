@@ -1,0 +1,72 @@
+---
+- name: VMware - Networks
+  hosts: networks
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: networks
+
+- name: VMware - Folders
+  hosts: folders
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: folders
+
+- name: VMware - Pools
+  hosts: pools
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: pools
+
+- name: VMware - Virtual Machines
+  hosts: vms
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: vms
+
+- name: VM specifics - FortiGate
+  hosts: vms_forti
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: forti
+
+- name: VM snapshots - START
+  hosts: vms
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: snapshot
+
+- name: VM power trigger
+  hosts: vms
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: power
+
+- name: VMware - Folders Access
+  hosts: folders
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: access
+
+- name: VMware - Pools Access
+  hosts: pools
+  gather_facts: false
+  tasks:
+    - ansible.builtin.include_role:
+        name: deploy
+      tags: access

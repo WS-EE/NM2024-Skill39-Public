@@ -1,0 +1,46 @@
+---
+
+- name: Install nginx
+  ansible.builtin.apt:
+    name: nginx
+    state: present
+  become: true
+  tags:
+    - www
+
+- name: Copy nginx conf
+  ansible.builtin.template:
+    src: custom-sites.conf.j2
+    dest: "{{ nginx_gen.path.sites }}nm24-custom"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify:
+    Restart nginx
+  tags:
+    - www
+
+- name: Make sure site folders exist
+  ansible.builtin.file:
+    path: "{{ nginx_gen.path.web }}/{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+  loop: "{{ nginx_gen.sites }}"
+  tags:
+    - www
+
+- name: Copy index.html files
+  ansible.builtin.copy:
+    src: "{{ item }}-index.html"
+    dest: "{{ nginx_gen.path.web }}/{{ item }}/index.html"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  loop: "{{ nginx_gen.sites }}"
+  tags:
+    - www

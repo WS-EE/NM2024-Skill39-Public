@@ -1,0 +1,38 @@
+config system interface
+    edit port2
+        set ip 192.168.201.244/24
+        set allowaccess ping
+    next
+    edit port3
+        set ip 192.168.202.244/24
+        set allowaccess ping
+    next
+    edit port4
+        set ip 192.168.203.244/24
+        set allowaccess ping
+    next
+    edit port5
+        set ip 192.168.204.244/24
+        set allowaccess ping
+    next
+    edit port6
+        set ip 192.168.205.244/24
+        set allowaccess ping
+    next
+    edit port7
+        set ip 192.168.206.244/24
+        set allowaccess ping
+    next
+    edit port8
+        set ip 192.168.207.244/24
+        set allowaccess ping
+    next
+    edit port9
+        set ip 192.168.208.244/24
+        set allowaccess ping
+    next
+    edit port10
+        set ip 192.168.209.244/24
+        set allowaccess ping
+    next
+end

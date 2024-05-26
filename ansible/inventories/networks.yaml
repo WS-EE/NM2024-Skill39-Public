@@ -1,0 +1,265 @@
+all:
+  children:
+    networks:
+      hosts:
+        NM24-V1-C1-PK-SVC:
+          vlan_id: 2111
+        NM24-V1-C1-PK-USR:
+          vlan_id: 2121
+        NM24-V1-C1-HK-SVC:
+          vlan_id: 2131
+        NM24-V1-C1-HK-USR:
+          vlan_id: 2141
+        NM24-V1-C2-TICKET1:
+          vlan_id: 2201
+        NM24-V1-C2-TICKET2:
+          vlan_id: 2211
+        NM24-V1-C2-TICKET3:
+          vlan_id: 2221
+        NM24-V1-C2-TICKET4:
+          vlan_id: 2231
+        NM24-V1-C2-TICKET5:
+          vlan_id: 2241
+        NM24-V1-C2-TICKET6:
+          vlan_id: 2251
+        NM24-V1-C2-TICKET7:
+          vlan_id: 2261
+        NM24-V1-C2-TICKET8:
+          vlan_id: 2271
+        NM24-V1-C2-TICKET9:
+          vlan_id: 2281
+        NM24-V1-C2-TICKET10:
+          vlan_id: 2291
+
+        NM24-V2-C1-PK-SVC:
+          vlan_id: 2112
+        NM24-V2-C1-PK-USR:
+          vlan_id: 2122
+        NM24-V2-C1-HK-SVC:
+          vlan_id: 2132
+        NM24-V2-C1-HK-USR:
+          vlan_id: 2142
+        NM24-V2-C2-TICKET1:
+          vlan_id: 2202
+        NM24-V2-C2-TICKET2:
+          vlan_id: 2212
+        NM24-V2-C2-TICKET3:
+          vlan_id: 2222
+        NM24-V2-C2-TICKET4:
+          vlan_id: 2232
+        NM24-V2-C2-TICKET5:
+          vlan_id: 2242
+        NM24-V2-C2-TICKET6:
+          vlan_id: 2252
+        NM24-V2-C2-TICKET7:
+          vlan_id: 2262
+        NM24-V2-C2-TICKET8:
+          vlan_id: 2272
+        NM24-V2-C2-TICKET9:
+          vlan_id: 2282
+        NM24-V2-C2-TICKET10:
+          vlan_id: 2292
+
+        NM24-V3-C1-PK-SVC:
+          vlan_id: 2113
+        NM24-V3-C1-PK-USR:
+          vlan_id: 2123
+        NM24-V3-C1-HK-SVC:
+          vlan_id: 2133
+        NM24-V3-C1-HK-USR:
+          vlan_id: 2143
+        NM24-V3-C2-TICKET1:
+          vlan_id: 2203
+        NM24-V3-C2-TICKET2:
+          vlan_id: 2213
+        NM24-V3-C2-TICKET3:
+          vlan_id: 2223
+        NM24-V3-C2-TICKET4:
+          vlan_id: 2233
+        NM24-V3-C2-TICKET5:
+          vlan_id: 2243
+        NM24-V3-C2-TICKET6:
+          vlan_id: 2253
+        NM24-V3-C2-TICKET7:
+          vlan_id: 2263
+        NM24-V3-C2-TICKET8:
+          vlan_id: 2273
+        NM24-V3-C2-TICKET9:
+          vlan_id: 2283
+        NM24-V3-C2-TICKET10:
+          vlan_id: 2293
+
+        NM24-V4-C1-PK-SVC:
+          vlan_id: 2114
+        NM24-V4-C1-PK-USR:
+          vlan_id: 2124
+        NM24-V4-C1-HK-SVC:
+          vlan_id: 2134
+        NM24-V4-C1-HK-USR:
+          vlan_id: 2144
+        NM24-V4-C2-TICKET1:
+          vlan_id: 2204
+        NM24-V4-C2-TICKET2:
+          vlan_id: 2214
+        NM24-V4-C2-TICKET3:
+          vlan_id: 2224
+        NM24-V4-C2-TICKET4:
+          vlan_id: 2234
+        NM24-V4-C2-TICKET5:
+          vlan_id: 2244
+        NM24-V4-C2-TICKET6:
+          vlan_id: 2254
+        NM24-V4-C2-TICKET7:
+          vlan_id: 2264
+        NM24-V4-C2-TICKET8:
+          vlan_id: 2274
+        NM24-V4-C2-TICKET9:
+          vlan_id: 2284
+        NM24-V4-C2-TICKET10:
+          vlan_id: 2294
+
+        NM24-V5-C1-PK-SVC:
+          vlan_id: 2115
+        NM24-V5-C1-PK-USR:
+          vlan_id: 2125
+        NM24-V5-C1-HK-SVC:
+          vlan_id: 2135
+        NM24-V5-C1-HK-USR:
+          vlan_id: 2145
+        NM24-V5-C2-TICKET1:
+          vlan_id: 2205
+        NM24-V5-C2-TICKET2:
+          vlan_id: 2215
+        NM24-V5-C2-TICKET3:
+          vlan_id: 2225
+        NM24-V5-C2-TICKET4:
+          vlan_id: 2235
+        NM24-V5-C2-TICKET5:
+          vlan_id: 2245
+        NM24-V5-C2-TICKET6:
+          vlan_id: 2255
+        NM24-V5-C2-TICKET7:
+          vlan_id: 2265
+        NM24-V5-C2-TICKET8:
+          vlan_id: 2275
+        NM24-V5-C2-TICKET9:
+          vlan_id: 2285
+        NM24-V5-C2-TICKET10:
+          vlan_id: 2295
+
+        NM24-V6-C1-PK-SVC:
+          vlan_id: 2116
+        NM24-V6-C1-PK-USR:
+          vlan_id: 2126
+        NM24-V6-C1-HK-SVC:
+          vlan_id: 2136
+        NM24-V6-C1-HK-USR:
+          vlan_id: 2146
+        NM24-V6-C2-TICKET1:
+          vlan_id: 2206
+        NM24-V6-C2-TICKET2:
+          vlan_id: 2216
+        NM24-V6-C2-TICKET3:
+          vlan_id: 2226
+        NM24-V6-C2-TICKET4:
+          vlan_id: 2236
+        NM24-V6-C2-TICKET5:
+          vlan_id: 2246
+        NM24-V6-C2-TICKET6:
+          vlan_id: 2256
+        NM24-V6-C2-TICKET7:
+          vlan_id: 2266
+        NM24-V6-C2-TICKET8:
+          vlan_id: 2276
+        NM24-V6-C2-TICKET9:
+          vlan_id: 2286
+        NM24-V6-C2-TICKET10:
+          vlan_id: 2296
+
+        NM24-V7-C1-PK-SVC:
+          vlan_id: 2117
+        NM24-V7-C1-PK-USR:
+          vlan_id: 2127
+        NM24-V7-C1-HK-SVC:
+          vlan_id: 2137
+        NM24-V7-C1-HK-USR:
+          vlan_id: 2147
+        NM24-V7-C2-TICKET1:
+          vlan_id: 2207
+        NM24-V7-C2-TICKET2:
+          vlan_id: 2217
+        NM24-V7-C2-TICKET3:
+          vlan_id: 2227
+        NM24-V7-C2-TICKET4:
+          vlan_id: 2237
+        NM24-V7-C2-TICKET5:
+          vlan_id: 2247
+        NM24-V7-C2-TICKET6:
+          vlan_id: 2257
+        NM24-V7-C2-TICKET7:
+          vlan_id: 2267
+        NM24-V7-C2-TICKET8:
+          vlan_id: 2277
+        NM24-V7-C2-TICKET9:
+          vlan_id: 2287
+        NM24-V7-C2-TICKET10:
+          vlan_id: 2297
+
+        NM24-V8-C1-PK-SVC:
+          vlan_id: 2118
+        NM24-V8-C1-PK-USR:
+          vlan_id: 2128
+        NM24-V8-C1-HK-SVC:
+          vlan_id: 2138
+        NM24-V8-C1-HK-USR:
+          vlan_id: 2148
+        NM24-V8-C2-TICKET1:
+          vlan_id: 2208
+        NM24-V8-C2-TICKET2:
+          vlan_id: 2218
+        NM24-V8-C2-TICKET3:
+          vlan_id: 2228
+        NM24-V8-C2-TICKET4:
+          vlan_id: 2238
+        NM24-V8-C2-TICKET5:
+          vlan_id: 2248
+        NM24-V8-C2-TICKET6:
+          vlan_id: 2258
+        NM24-V8-C2-TICKET7:
+          vlan_id: 2268
+        NM24-V8-C2-TICKET8:
+          vlan_id: 2278
+        NM24-V8-C2-TICKET9:
+          vlan_id: 2288
+        NM24-V8-C2-TICKET10:
+          vlan_id: 2298
+
+        NM24-V9-C1-PK-SVC:
+          vlan_id: 2119
+        NM24-V9-C1-PK-USR:
+          vlan_id: 2129
+        NM24-V9-C1-HK-SVC:
+          vlan_id: 2139
+        NM24-V9-C1-HK-USR:
+          vlan_id: 2149
+        NM24-V9-C2-TICKET1:
+          vlan_id: 2209
+        NM24-V9-C2-TICKET2:
+          vlan_id: 2219
+        NM24-V9-C2-TICKET3:
+          vlan_id: 2229
+        NM24-V9-C2-TICKET4:
+          vlan_id: 2239
+        NM24-V9-C2-TICKET5:
+          vlan_id: 2249
+        NM24-V9-C2-TICKET6:
+          vlan_id: 2259
+        NM24-V9-C2-TICKET7:
+          vlan_id: 2269
+        NM24-V9-C2-TICKET8:
+          vlan_id: 2279
+        NM24-V9-C2-TICKET9:
+          vlan_id: 2289
+        NM24-V9-C2-TICKET10:
+          vlan_id: 2299
+

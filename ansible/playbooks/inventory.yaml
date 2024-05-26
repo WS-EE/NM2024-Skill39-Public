@@ -1,0 +1,6 @@
+---
+- name: Build inventories
+  hosts: localhost
+  gather_facts: false
+  roles:
+    - inventory

@@ -1,0 +1,16 @@
+;
+; asi. TLD zone for nm24
+;
+$TTL    600
+@       IN      SOA     admin.asi. eesti-tld.asi. (
+                     2024050501         ; Serial
+                            600         ; Refresh
+                            600         ; Retry
+                            600         ; Expire
+                            600 )       ; Negative Cache TTL
+;
+asi.             NS      eesti-tld.asi.
+eesti-tld.asi.   A       {{ ansible_host }}
+
+eesti.asi.        NS      ns.eesti.asi.
+ns.eesti.asi.     A       {{ ansible_host }}

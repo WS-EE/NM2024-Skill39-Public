@@ -1,0 +1,70 @@
+---
+
+- name: Copy files
+  ansible.builtin.include_tasks:
+    "copy-files.yaml"
+  tags:
+    - docker
+    - repo
+
+- name: Install docker
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  with_items:
+    - docker
+    - docker-compose
+  tags:
+    - docker
+    - repo
+
+- name: Docker-compose
+  community.docker.docker_compose:
+    project_src: "{{ repo_docker_root_path }}"
+    state: present
+    build: true
+  become: true
+  tags:
+    - docker-compose
+    - docker
+    - repo
+
+- name: Push bind9 image
+  community.docker.docker_image:
+    name: ubuntu/bind9
+    repository: localhost:5000/bind9
+    push: true
+    source: pull
+  become: true
+  tags:
+    - repo
+    - docker
+    - image
+
+- name: Copy text file for competitors
+  ansible.builtin.copy:
+    src: "txt/{{ item }}"
+    dest: "{{ repo_docker_root_path }}/generic-data/{{ item }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  become: true
+  with_items:
+    - registry.txt
+    - root.hints
+  tags:
+    - repo
+    - txt
+
+- name: Download wordpress
+  ansible.builtin.get_url:
+    url: "https://wordpress.org/latest.zip"
+    dest: "{{ repo_docker_root_path }}/generic-data/wordpress-latest.zip"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0644"
+  become: true
+  tags:
+    - repo
+    - wordpress

@@ -1,0 +1,21 @@
+;
+; mtk. TLD zone for NM24
+;
+$TTL    600
+@       IN      SOA     admin.mtk. nm24-tld.mtk. (
+                     2024050501         ; Serial
+                            600         ; Refresh
+                            600         ; Retry
+                            600         ; Expire
+                            600 )       ; Negative Cache TTL
+;
+mtk.             NS      nm24-tld.mtk.
+nm24-tld.mtk.    A       {{ ansible_host }}
+
+kehtna.mtk.          IN     A      192.168.0.2
+esx.kehtna.mtk.      IN     A      192.168.20.17
+esx-01.kehtna.mtk.   IN     A      192.168.20.1
+esx-02.kehtna.mtk.   IN     A      192.168.20.2
+esx-03.kehtna.mtk.   IN     A      192.168.20.3
+esx-04.kehtna.mtk.   IN     A      192.168.20.4
+esx-05.kehtna.mtk.   IN     A      192.168.20.5

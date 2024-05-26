@@ -1,0 +1,120 @@
+---
+- name: Virtual Machines - Remove
+  delegate_to: localhost
+  community.vmware.vmware_guest:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    state: absent
+    force: true
+    name: '{{ inventory_hostname }}'
+    delete_from_inventory: true
+  when: vmware.state.vms == "absent"
+
+- name: VM state
+  delegate_to: localhost
+  community.vmware.vmware_guest_info:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    name: '{{ inventory_hostname }}'
+  ignore_errors: true
+  when: vmware.state.vms == "present"
+  register: vm_state
+
+- name: VM state - Set dummy value if exists
+  ansible.builtin.set_fact:
+    vm_state:
+      msg: "exists"
+  delegate_to: localhost
+  when:
+    - vmware.state.vms == "present"
+    - not vm_state.failed
+
+- name: Virtual Machines - Create
+  delegate_to: localhost
+  community.vmware.vmware_guest:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    state: present
+    force: false
+    template: '{{ vm_template }}'
+    folder: '{{ vm_folder }}'
+    resource_pool: '{{ vm_pool }}'
+    name: '{{inventory_hostname }}'
+  when: 
+    - vmware.state.vms == "present"
+    - '"non-existing" in vm_state.msg'
+
+- name: Virtual Machines - Net Adapter 1
+  delegate_to: localhost
+  community.vmware.vmware_guest_network:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    guest_control: false
+    state: present
+    name: '{{ inventory_hostname }}'
+    network_name: "{{ vm_networks[0].name }}"
+    connected: "{{ vm_networks[0].connected }}"
+    label: "{{ vm_networks[0].label }}"
+  when: vmware.state.vms == "present"
+
+- name: Virtual Machines - Net Adapter 2
+  delegate_to: localhost
+  community.vmware.vmware_guest_network:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    guest_control: false
+    state: present
+    name: '{{ inventory_hostname }}'
+    network_name: "{{ vm_networks[1].name }}"
+    connected: "{{ vm_networks[1].connected }}"
+    label: "{{ vm_networks[1].label }}"
+  when:
+    - vmware.state.vms == "present"
+    - vm_networks[1] is defined
+
+- name: Virtual Machines - Net Adapter 3
+  delegate_to: localhost
+  community.vmware.vmware_guest_network:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    guest_control: false
+    state: present
+    name: '{{ inventory_hostname }}'
+    network_name: "{{ vm_networks[2].name }}"
+    connected: "{{ vm_networks[2].connected }}"
+    label: "{{ vm_networks[2].label }}"
+  when:
+    - vmware.state.vms == "present"
+    - vm_networks[2] is defined
+
+- name: Start Virtual Machine
+  delegate_to: localhost
+  community.vmware.vmware_guest_powerstate:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    folder: "{{ vm_folder }}"
+    name: '{{ inventory_hostname }}'
+    state: powered-on
+  when:
+    - vmware.state.vms == "present"

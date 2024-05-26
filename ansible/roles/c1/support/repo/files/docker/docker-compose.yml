@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  mirror:
+    build: .
+    command: bash -c "apt-mirror && bash /apt-mirror/postmirror.sh"
+    volumes:
+      - "./mirror:/var/spool/apt-mirror"
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.Dockerfile
+    restart: always
+    command: [nginx-debug, '-g', 'daemon off;']
+    volumes:
+      - "./mirror/mirror:/mirror:ro"
+      - "./generic-data:/generic-data:ro"
+    ports:
+      - "80:80"
+  registry:
+    image: registry:2
+    restart: always
+    environment:
+      REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
+    volumes:
+      - ./registry-data:/data
+    ports:
+      - "5000:5000"
+    

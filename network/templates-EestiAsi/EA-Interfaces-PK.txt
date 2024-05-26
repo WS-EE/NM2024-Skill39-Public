@@ -1,0 +1,21 @@
+config router static
+    edit 1
+        set gateway 198.51.100.1
+        set device "port1"
+    next
+end
+
+config system interface
+	edit port1
+    	set mode static
+    	set ip 198.51.100.$(SiteID)0$(EA_VID)/24
+        set allowaccess ping
+    next
+    edit port2
+        set ip 10.$(SiteID)0.10$(EA_VID).1/24
+        set allowaccess ping http https ssh
+    next
+    edit port3
+        unset ip
+    next
+end

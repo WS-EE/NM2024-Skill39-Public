@@ -1,0 +1,82 @@
+- name: Set hostname
+  ansible.windows.win_hostname:
+    name: "dc"
+  register: _hostname
+
+- name: Reboot if name changed
+  ansible.windows.win_reboot:
+  when: '_hostname is defined and _hostname.changed'
+
+- name: Configure DNS Servers
+  ansible.windows.win_dns_client:
+    adapter_names: '*'
+    ipv4_addresses: '{{ ansible_host }}'
+
+- name: Install ADDS
+  ansible.windows.win_feature:
+    name: AD-Domain-Services
+    include_sub_features: true
+    include_management_tools: true
+    state: present
+  register: _install_dc
+
+- name: Configure PDC
+  ansible.windows.win_domain:
+    dns_domain_name: "{{ inventory_hostname_short }}.ee"
+    domain_netbios_name: "{{ inventory_hostname_short | upper }}"
+    safe_mode_password: 'Passw0rd!'
+    create_dns_delegation: false
+  register: pdc_promo
+
+- name: PDC reboot after promo
+  ansible.windows.win_reboot:
+  when: pdc_promo is defined and pdc_promo.changed
+
+- name: Restart ADDS
+  ansible.windows.win_service:
+    name: NTDS
+    state: restarted
+    force_dependent_services: true
+  when: pdc_promo is defined and pdc_promo.changed
+  failed_when: false
+
+- name: Make sure GPO powershell snap-in is installed
+  ansible.windows.win_optional_feature:
+    name: Microsoft-Windows-GroupPolicy-ServerAdminTools-Update
+    state: present
+
+- name: Add GPO
+  ansible.windows.win_copy:
+    src: gpo/
+    dest: C:\Windows\Temp\gpo
+
+- name: Import GPO
+  ansible.windows.win_shell: >
+    if (Get-GPO "Default Policy") {
+        exit 1001
+    } else {
+        Import-GPO -CreateIfNeeded -Path C:\Windows\Temp\gpo\ -BackupGpoName "Default Policy" -TargetName "Default Policy"
+        New-GPLink -Name "Default Policy" -Target "DC=tix8,DC=ee"
+    }
+  register: handling
+  changed_when: handling.rc == 0
+  failed_when: handling.rc == 1
+
+- name: Local Task Scheduler
+  community.windows.win_scheduled_task:
+    name: CreateExplorerShellElevatedTask
+    actions:
+      - path: cmd.exe
+        arguments: /c timeout 180
+      - path: shutdown.exe
+        arguments: /r /t 0 /f
+    triggers:
+      - type: boot
+    username: SYSTEM
+    state: present
+    enabled: true
+
+- name: StartUp script
+  ansible.windows.win_copy:
+    src: reboot.bat
+    dest: C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StartUp\reboot.bat

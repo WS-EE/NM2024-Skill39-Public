@@ -1,0 +1,43 @@
+all:
+  children:
+    # Inventory structure for c+1
+    c1:
+      children:
+        support_c1:
+          hosts:
+            ns.nm24.ee:
+              ansible_host: "203.0.113.1"
+            repo.nm24.ee:
+              ansible_host: "203.0.113.2"
+            www.nm24.ee:
+              ansible_host: "203.0.113.3"
+    # Inventory structure for c+2
+    c2:
+      children:
+        linux:
+          hosts:
+            tix1.c2.nm24.ee:
+            tix2.c2.nm24.ee:
+            tix3.c2.nm24.ee:
+            tix4.c2.nm24.ee:
+            tix5.c2.nm24.ee:
+          children:
+            support_c2_linux:
+              hosts:
+                ws-tix1.c2.nm24.ee:
+                fs-tix2.c2.nm24.ee:
+                rtr-tix4.c2.nm24.ee:
+        windows:
+          hosts:
+            tix6.c2.nm24.ee:
+            tix7.c2.nm24.ee:
+            tix8.c2.nm24.ee:
+            tix9.c2.nm24.ee:
+            tix10.c2.nm24.ee:
+          children:
+            support_c2_win:
+              hosts:
+                dc-tix6.c2.nm24.ee:
+                fs-tix6.c2.nm24.ee:
+                dc-tix7.c2.nm24.ee:
+                dc-tix10.c2.nm24.ee:

@@ -1,0 +1,32 @@
+---
+- name: Inventory - Networks
+  delegate_to: localhost
+  ansible.builtin.template:
+    src: networks.yaml.j2
+    dest: ../inventories/networks.yaml
+  tags:
+   - networks
+
+- name: Inventory - Folders
+  delegate_to: localhost
+  ansible.builtin.template:
+    src: folders.yaml.j2
+    dest: ../inventories/folders.yaml
+  tags:
+   - folders
+
+- name: Inventory - Pools
+  delegate_to: localhost
+  ansible.builtin.template:
+    src: pools.yaml.j2
+    dest: ../inventories/pools.yaml
+  tags:
+   - pools
+
+- name: Inventory - Virtual Machines
+  delegate_to: localhost
+  ansible.builtin.template:
+    src: vms.yaml.j2
+    dest: ../inventories/vms.yaml
+  tags:
+   - vms

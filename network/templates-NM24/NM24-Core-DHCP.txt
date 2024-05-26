@@ -1,0 +1,15 @@
+config system dhcp server
+    edit 1
+        set lease-time 300
+        set default-gateway 198.51.100.1
+        set netmask 255.255.255.0
+        set interface "EESTIASI"
+        config ip-range
+            edit 1
+                set start-ip 198.51.100.51
+                set end-ip 198.51.100.90
+            next
+        end
+        set dns-server1 203.0.113.1
+    next
+end

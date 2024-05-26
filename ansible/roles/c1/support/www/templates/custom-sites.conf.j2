@@ -1,0 +1,18 @@
+
+{% for site in nginx_gen.sites %}
+server {
+    listen 80;
+    server_name {{ site }}.nm24.ee;
+    root {{ nginx_gen.path.web }}/{{ site }}/;
+    index index.html;
+}
+
+{% endfor %}
+
+server {
+    listen 80;
+    server_name 203.0.113.3;
+    location /client-ip {
+        return 200 $remote_addr;
+    }
+}

@@ -1,0 +1,33 @@
+---
+- name: What is Forti IP address
+  delegate_to: localhost
+  community.vmware.vmware_guest_info:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    name: '{{ inventory_hostname }}'
+  register: info
+
+- name: Upload license
+  delegate_to: localhost
+  ansible.builtin.shell: |
+    sshpass -p {{ forti.password }} scp -o StrictHostKeyChecking=no -o UserKnownHostsFile=/tmp/blah -O {{ inventory_hostname }}.lic admin@{{ info.instance.hw_eth0.ipaddresses[0] }}:vmlicense 
+  args:
+    chdir: ../roles/deploy/files/_vms_forti
+
+- name: Wait for the VM to boot
+  delegate_to: localhost
+  ansible.builtin.pause:
+    minutes: 2
+
+- name: Force cloud synchronization
+  delegate_to: localhost
+  ansible.builtin.shell: |
+    sshpass -p {{ forti.password }} ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/tmp/blah admin@{{ info.instance.hw_eth0.ipaddresses[0] }} 'exe central-mgmt register-device {{ forti.fmg_id }} {{ forti.password }}'
+
+# - name: Delete FortiManager connection
+#   delegate_to: localhost
+#   ansible.builtin.shell: |
+#     ssh -i ~/.ssh/nm24 -o StrictHostKeyChecking=no -o UserKnownHostsFile=/tmp/blah admin@{{ info.instance.hw_eth1.ipaddresses[0] }} 'exe central-mgmt unregister-device {{ forti.fmg_id }}'

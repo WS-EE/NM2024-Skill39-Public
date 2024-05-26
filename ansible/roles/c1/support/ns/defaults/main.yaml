@@ -1,0 +1,12 @@
+ns_bind9:
+  path:
+    config: "/etc/bind/"
+    zones: "/etc/bind/zones/"
+  user: bind
+  group: bind
+  zones:
+    - nm24.ee
+    - asi
+    - eesti.asi
+    - mtk
+    - 113.0.203.in-addr.arpa

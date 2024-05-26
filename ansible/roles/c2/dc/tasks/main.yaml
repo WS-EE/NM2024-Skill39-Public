@@ -1,0 +1,40 @@
+- name: Set hostname
+  ansible.windows.win_hostname:
+    name: "{{ dc_hostname }}"
+  register: _hostname
+
+- name: Reboot if name changed
+  ansible.windows.win_reboot:
+  when: '_hostname is defined and _hostname.changed'
+
+- name: Configure DNS Servers
+  ansible.windows.win_dns_client:
+    adapter_names: '*'
+    ipv4_addresses: '{{ ansible_host }}'
+
+- name: Install ADDS
+  ansible.windows.win_feature:
+    name: AD-Domain-Services
+    include_sub_features: true
+    include_management_tools: true
+    state: present
+  register: _install_dc
+
+- name: Configure PDC
+  ansible.windows.win_domain:
+    dns_domain_name: "{{ dc_domain_name }}"
+    safe_mode_password: 'Passw0rd!'
+    create_dns_delegation: false
+  register: pdc_promo
+
+- name: PDC reboot after promo
+  ansible.windows.win_reboot:
+  when: pdc_promo is defined and pdc_promo.changed
+
+- name: Restart ADDS
+  ansible.windows.win_service:
+    name: NTDS
+    state: restarted
+    force_dependent_services: true
+  when: pdc_promo is defined and pdc_promo.changed
+  failed_when: false

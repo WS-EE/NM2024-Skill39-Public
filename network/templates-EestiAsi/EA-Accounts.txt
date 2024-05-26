@@ -1,0 +1,16 @@
+config system admin
+    edit "admin"
+    	set ssh-public-key1 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtsxcoAmilrhLSlWd0Ub4A8URSh+WPph1jeeixjIdwZ"
+   	next
+    edit "kohtunik"
+        set accprofile "super_admin"
+        set vdom "root"
+		set ssh-public-key1 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtsxcoAmilrhLSlWd0Ub4A8URSh+WPph1jeeixjIdwZ"
+        set password ENC SH27BTnx4tbrrH/7N6DeHMoxJ1/3n/3kM5lRr7ZuI953CYp8xbHnUg2NBy9DZo=
+    next
+    edit "meister"
+        set accprofile "super_admin"
+        set vdom "root"
+        set password ENC SH2VZSRMu0QBZSz//QCrKs9lFLp1R2h0x6P/6kD1y5bbngz2BooRBYTC8sJys0=
+    next
+end

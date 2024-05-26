@@ -1,0 +1,60 @@
+---
+- name: Pool - Create - Root
+  delegate_to: localhost
+  community.vmware.vmware_resource_pool:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    parent_resource_pool: '{{ pool_parent }}'
+    resource_pool: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.pools }}'
+  when: 
+   - "'pools_root' in group_names"
+   - vmware.state.pools == "present"
+
+- name: Pool - Create - Sub
+  delegate_to: localhost
+  community.vmware.vmware_resource_pool:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    parent_resource_pool: '{{ pool_parent }}'
+    resource_pool: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.pools }}'
+  when:
+   - "'pools_sub' in group_names"
+   - vmware.state.pools == "present"
+
+- name: Pool - Cleanup - Sub
+  delegate_to: localhost
+  community.vmware.vmware_resource_pool:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    cluster: '{{ vmware.cluster }}'
+    resource_pool: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.pools }}'
+  when:
+   - "'pools_sub' in group_names"
+   - vmware.state.pools == "absent"
+  
+- name: Pool - Cleanup - Root
+  delegate_to: localhost
+  community.vmware.vmware_resource_pool:
+    validate_certs: false
+    hostname: '{{ vmware.host }}'
+    username: '{{ vmware.user }}'
+    password: '{{ vmware.password }}'
+    datacenter: '{{ vmware.datacenter }}'
+    cluster: '{{ vmware.cluster }}'
+    resource_pool: '{{ inventory_hostname }}'
+    state: '{{ vmware.state.pools }}'
+  when:
+   - "'pools_root' in group_names"
+   - vmware.state.pools == "absent"

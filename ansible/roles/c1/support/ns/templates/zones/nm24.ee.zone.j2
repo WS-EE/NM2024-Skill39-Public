@@ -1,0 +1,19 @@
+;
+; ee. TLD zone for NM24
+;
+$TTL    600
+@       IN      SOA     admin.ee. ns.nm24.ee. (
+                     2024050501         ; Serial
+                            600         ; Refresh
+                            600         ; Retry
+                            600         ; Expire
+                            600 )       ; Negative Cache TTL
+;
+nm24.ee.        NS      ns.nm24.ee.
+ns.nm24.ee.     A       {{ ansible_host }}
+
+block           A       {{ hostvars['www.nm24.ee'].ansible_host }}
+
+{% for host in groups['support_c1'] %}
+{{ hostvars[host].inventory_hostname }}.    A   {{ hostvars[host].ansible_host }}
+{% endfor %}

@@ -1,0 +1,7 @@
+nginx_gen:
+  path:
+    web: "/var/www/html"
+    sites: "/etc/nginx/sites-enabled/"
+  sites:
+    - block
+    - www

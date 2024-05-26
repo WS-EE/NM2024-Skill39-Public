@@ -1,0 +1,23 @@
+- name: Setup up C1 support machines
+  hosts:
+    - support_c1
+  roles:
+    - c1/generic-linux-init
+
+- name: Setup repo
+  hosts:
+    - repo.nm24.ee
+  roles:
+    - c1/support/repo
+
+- name: Setup nameserver
+  hosts:
+    - ns.nm24.ee
+  roles:
+    - c1/support/ns
+
+- name: Setup webserver
+  hosts:
+    - www.nm24.ee
+  roles:
+    - c1/support/www

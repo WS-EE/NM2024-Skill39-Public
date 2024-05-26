@@ -1,0 +1,38 @@
+---
+- name: VMware tasks
+  block:
+    - name: Networks
+      ansible.builtin.import_tasks: _networks.yaml
+      tags: networks
+
+    - name: Folders
+      ansible.builtin.import_tasks: _folders.yaml
+      tags: folders
+
+    - name: Pools
+      ansible.builtin.import_tasks: _pools.yaml
+      tags: pools
+
+    - name: Virtual Machines
+      ansible.builtin.import_tasks: _vms.yaml
+      tags: vms
+
+    - name: VM specifics - FortiGate
+      ansible.builtin.import_tasks: _vms_forti.yaml
+      tags: forti
+
+    - name: VM snapshots - START
+      ansible.builtin.import_tasks: _snapshot.yaml
+      tags: snapshot
+
+    - name: VM power trigger
+      ansible.builtin.import_tasks: _power.yaml
+      tags: power
+
+    - name: Folders Access
+      ansible.builtin.import_tasks: _folders_access.yaml
+      tags: access
+
+    - name: Pools Access
+      ansible.builtin.import_tasks: _pools_access.yaml
+      tags: access
